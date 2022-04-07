@@ -1,0 +1,5 @@
+ign*
+config.py
+__pycache__/
+gui_base.py
+mainPOS_Base.py
