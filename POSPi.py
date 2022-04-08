@@ -43,11 +43,6 @@ def product_id_lookup(upc):
             printHistory("I dunno, bud")
             strErrorCode.set("Last HTTP Response: %i" % (r.status_code))
             product_id = 0
-            # sad_list = os.listdir(sad_dir)
-            # # Loading Random Music File
-            # mixer.music.load(sad_dir + random.choice(sad_list)) 
-            # # Playing Music with Pygame
-            # mixer.music.play() 
             playRandom(sad_dir)
             return
         # Going to check and make sure that we found a product to use.  If we didn't find it lets search the internets and see if we can find it.
@@ -81,11 +76,6 @@ def consume_product(product_id,product_name,consume_amount,stock_amount):
             'transaction_type': 'consume',
             'spoiled': 'false'}
             grocy_api_call_post(url, data)
-            # happy_list = os.listdir(happy_dir)
-            # # Loading Random Music File
-            # mixer.music.load(happy_dir + random.choice(happy_list)) 
-            # # Playing Music with Pygame
-            # mixer.music.play() 
             playRandom(happy_dir)
 
 # Build info and pass it to POST helper for adding product to Grocy
@@ -98,20 +88,10 @@ def purchase_product(product_id,product_name,purchase_amount):
         'transaction_type': 'purchase'}
         grocy_api_call_post(url, data)
         if response_code == 200:
-            # happy_list = os.listdir(happy_dir)
-            # # Loading Random Music File
-            # mixer.music.load(happy_dir + random.choice(happy_list)) 
-            # # Playing Music with Pygame
-            # mixer.music.play() 
             playRandom(happy_dir)
         if response_code != 200:
             printHistory("Increasing the value of %s failed" % (product_name))
             strErrorCode.set("Last HTTP Response: %i" % (response_code))
-            # sad_list = os.listdir(sad_dir)
-            # # Loading Random Music File
-            # mixer.music.load(sad_dir + random.choice(sad_list)) 
-            # # Playing Music with Pygame
-            # mixer.music.play() 
             playRandom(sad_dir)
 
 # Function to handle POST's, manipulate inventory values based on product
@@ -154,6 +134,7 @@ def printHistory(text):
     historytxt.see(tk.END)
 
 def playRandom(path):
+    # Get a list of files in the supplied directory
     list = os.listdir(path)
     # Loading Random Music File
     mixer.music.load(path + random.choice(list)) 
@@ -272,11 +253,5 @@ else:
     happy_dir = media_dir + 'happy/'
     sad_dir = media_dir + 'sad/'
 
-# # Generate a list of media files in the media directory
-# welcome_list = os.listdir(welcome_dir)
-
-# # Pick a random startup sound and play it
-# mixer.music.load(welcome_dir + random.choice(welcome_list)) #Loading Music File
-# mixer.music.play() #Playing Music with Pygame
 playRandom(welcome_dir)
 window.mainloop()
