@@ -77,6 +77,10 @@ def consume_product(product_id,product_name,consume_amount,stock_amount):
             'spoiled': 'false'}
             grocy_api_call_post(url, data)
             playRandom(happy_dir)
+        else:
+            printHistory("Out of product %s" % (product_name))
+            playRandom(sad_dir)
+
 
 # Build info and pass it to POST helper for adding product to Grocy
 def purchase_product(product_id,product_name,purchase_amount):
